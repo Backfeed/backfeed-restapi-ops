@@ -20,7 +20,8 @@ Build the docker image
 
 Now start the docker image:
 
-    docker run -it -p 8888 backfeed-restapi-service
+    docker run -itd -p 8888:8888 backfeed-restapi-service
+
 
 You can then visit your Backfeed REST API at:
 
