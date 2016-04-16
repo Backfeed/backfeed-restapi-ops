@@ -1,0 +1,12 @@
+src/*/.tox
+src/*/.cache
+src/*/temp
+src/*/build
+src/*/dist
+src/*/*.egg-info
+.git
+src/*/.git
+develop-eggs/
+backfeed-env/
+parts/
+*sublime*
