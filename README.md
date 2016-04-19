@@ -49,6 +49,11 @@ If you are satisfied that everything works, you can stop the docker command (wit
 
 ## Deployment in production
 
+You probably want to have a cronjob that makes sure the server is started on reboot.
+
+
+
+
 If everything is working as it should, 
 
 ## Develop
