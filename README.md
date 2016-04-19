@@ -26,16 +26,30 @@ Build the docker image
 
     docker build -t backfeed-api .
 
-Now start the docker image.
+If you get an error like ```dial unix /var/run/docker.sock: connect: permission denied. Are you trying to connect to a TLS-enabled daemon without TLS?```, you may need to add your user to the ```docker``` group:
 
-You need to tall the docker image (1) which port to listen on and (2) which data directory to use. For example, if you want the service to be available on port 8880, and save the data in ./backfeed-data-dir, you would start the service like tis:
+    usermod -a -G docker {yourusername}
 
-    docker run -itd -p 8880:8888 -v ./backfeed-data-dir:data backfeed-api
+Now you are ready to start the server using the docker image you just created.
 
-You can then visit your Backfeed REST API at:
+You need to tell the docker image (1) which port to listen on and (2) which data directory to use. 
 
-    http://0.0.0.0:8880/test/users
+For example, if you want the service to be available on port 8880, and save the data in /home/backfeed/data, you would start the service like tis:
 
+    docker run -it -p 8888:8888 -v /home/backfeed/data:/data backfeed-api
+
+You can now visit your Backfeed REST API at:
+
+    http://0.0.0.0:8888/test/users
+
+If you are satisfied that everything works, you can stop the docker command (with ```ctrl-C``` and then start is in daemon mode:)
+
+    docker run -itd -p 8888:8888 -v /home/backfeed/data:/data backfeed-api
+
+
+## Deployment in production
+
+If everything is working as it should, 
 
 ## Develop
 
