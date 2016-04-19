@@ -2,17 +2,25 @@
 
 Stuff that has to do with deployment of the REST API
 
-## Installation
+## Install
 
 Clone this repository and cd to the new directory:
 
     git clone https://github.com/Backfeed/backfeed-restapi-ops.git ops 
     cd ops
 
-If you do not have docker installed, do that first:
+If you do not have docker installed, do that first.
+
+### On Linux
 
     sudo apt-get install docker.io
     sudo service docker start
+
+### On Windows
+
+Install Docker Toolbox from: https://www.docker.com/products/docker-toolbox
+
+## Build
 
 Build the docker image
 
@@ -29,7 +37,7 @@ You can then visit your Backfeed REST API at:
     http://0.0.0.0:8880/test/users
 
 
-## Development
+## Develop
 
 If you want to update your image with the latest versions from master, these work: 
 
