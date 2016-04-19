@@ -23,6 +23,10 @@ VOLUME /data
 
 COPY ./update.sh /bin/update
 RUN  chmod a+x /bin/update
+
+COPY ./setup_database.py /bin/setup_database
+RUN  chmod a+x /bin/setup_database
+
 COPY ./development.ini /
 COPY ./production.ini /
-CMD gunicorn --paste development.ini port=8888 
+CMD gunicorn --paste  production.ini port=8888 

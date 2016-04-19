@@ -1,9 +1,13 @@
+#!/usr/bin/python2.7
 import sys
 import os
 
-from restapi import protocol;
+from backfeed_protocol import utils
 
-if __name__ == '__main__':
-	sqlite_db = sys.argv[1]
-	if not os.path.exists(sqlite_db):
-		protocol.setup_database(sqlite_db)
+if len(sys.argv) <= 1:
+    raise Exception('You need to provide a filename')
+
+sqlite_db = sys.argv[1]
+
+print 'setting up database',sqlite_db
+utils.setup_database(sqlite_db)
