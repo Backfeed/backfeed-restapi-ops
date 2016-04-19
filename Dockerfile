@@ -17,20 +17,12 @@ RUN easy_install -U pip
 COPY ./requirements.txt /
 RUN pip install -r requirements.txt 
 
-
 # create the datatabase with database tables# 
 VOLUME /data
-# COPY ./setup_database.py /
-# RUN python setup_database.py "/data/backfeed.db"
 
-#
-# remove this when done debugging
-#
 
-# COPY ./src /src
-# RUN pip install -e /src/backfeed_protocol/
-# RUN pip install -e /src/restapi
-
+COPY ./update.sh /bin/update
+RUN  chmod a+x /bin/update
 COPY ./development.ini /
 COPY ./production.ini /
-CMD gunicorn --paste development.ini port=8888
+CMD gunicorn --paste development.ini port=8888 
