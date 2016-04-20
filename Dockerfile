@@ -21,7 +21,6 @@ RUN pip install -r requirements.txt
 # create the datatabase with database tables# 
 VOLUME /data
 
-
 COPY ./update.sh /bin/update
 RUN  chmod a+x /bin/update
 
@@ -38,5 +37,6 @@ COPY ./runit.sh /etc/sv/backfeed/run
 RUN chmod u+x  /etc/sv/backfeed/run
 RUN ln -s /etc/sv/backfeed /etc/service/
 # ENTRYPOINT ["runsvdir-start"]
-
-CMD runsvdir-start
+RUN mkdir /var/log/backfeed
+RUN touch /var/log/backfeed/debug.log
+CMD runsvdir /etc/service && tail -f /var/log/backfeed/debug.log

@@ -1,3 +1,2 @@
 #!/bin/bash
-pip install -U backfeed-protocol 
-pip install -U backfeed-protocol-restapi
+pip install -U  -r requirements.txt
