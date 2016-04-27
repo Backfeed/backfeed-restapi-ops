@@ -15,6 +15,7 @@ If you do not have docker installed, do that first.
 
     sudo apt-get install docker.io
     sudo service docker start
+    pip install docker-compose
 
 ### On Windows
 
