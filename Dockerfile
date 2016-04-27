@@ -9,7 +9,8 @@ RUN apt-get install -y python-setuptools
 RUN apt-get install -y git
 RUN apt-get install -y build-essential python-dev libffi-dev libssl-dev
 RUN apt-get install -y runit
-# RUN  rm -rf /var/lib/apt/lists/*
+RUN apt-get install -y libpq-dev
+RUN rm -rf /var/lib/apt/lists/*
 
 # install pip with easy_install, as the trusty repo has a very old version
 RUN easy_install -U pip 
