@@ -1,0 +1,41 @@
+version: '2'
+services:
+  backfeed-api:
+    build: docker_api 
+    ports:
+     - "8888:8888"
+    volumes:
+     - /home/backfeed/data:/data
+    depends_on:
+     - backfeed-postgres 
+  backfeed-postgres:
+    build: docker_postgres
+    image: backfeed-postgres
+    volumes:
+     - /home/backfeed/data:/data
+    environment:
+     - POSTGRES_USER=backfeed
+     - POSTGRES_DB=backfeed
+     - PGDATA=/data/pgdata
+     - POSTGRES_INITDB_ARGS 
+     - POSTGRES_PASSWORD
+
+  backfeed-api-ore:
+    build: docker_api 
+    ports:
+     - "8888:8888"
+    volumes:
+     - /home/backfeed/data:/data
+    depends_on:
+     - backfeed-postgres-ore
+  backfeed-postgres-ore:
+    build: docker_postgres
+    image: backfeed-postgres
+    volumes:
+     - /home/backfeed/data:/data
+    environment:
+     - POSTGRES_USER=backfeed-ore
+     - POSTGRES_DB=backfeed-ore
+     - PGDATA=/data/pgdata
+     - POSTGRES_INITDB_ARGS 
+     - POSTGRES_PASSWORD
