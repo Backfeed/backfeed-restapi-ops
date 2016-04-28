@@ -5,14 +5,14 @@ services:
     ports:
      - "8888:8888"
     volumes:
-     - /home/backfeed/data:/data
+     - /tmp:/data
     depends_on:
      - backfeed-postgres 
   backfeed-postgres:
     build: docker_postgres
     image: backfeed-postgres
     volumes:
-     - /home/backfeed/data:/data
+     - /tmp:/data
     environment:
      - POSTGRES_USER=backfeed
      - POSTGRES_DB=backfeed
