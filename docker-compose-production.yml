@@ -13,6 +13,8 @@ services:
     image: backfeed-postgres
     volumes:
      - /home/backfeed/data:/data
+    ports:
+     - "5433:5432"
     environment:
      - POSTGRES_USER=backfeed
      - POSTGRES_DB=backfeed
