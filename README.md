@@ -11,11 +11,19 @@ Clone this repository and cd to the new directory:
 
 If you do not have docker installed, do that first.
 
-### On Linux
+### On Debian
 
-    sudo apt-get install docker.io
-    sudo service docker start
-    pip install docker-compose
+You need to install `docker` and `docker-compose`
+
+For Docker, follow the instuctions on https://docs.docker.com/engine/installation/linux/ubuntulinux/
+For `docker-compose`, https://github.com/docker/compose/releases
+
+As of writing, this was the quickest way:
+
+
+
+    curl -L https://github.com/docker/compose/releases/download/1.7.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose
 
 ### On Windows
 

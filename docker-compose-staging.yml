@@ -23,7 +23,7 @@ services:
   backfeed-api-ore:
     build: docker_api 
     ports:
-     - "8888:8888"
+     - "8889:8888"
     volumes:
      - /home/backfeed/data:/data
     depends_on:
