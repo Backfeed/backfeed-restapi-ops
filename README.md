@@ -49,11 +49,24 @@ If you get an error like ```dial unix /var/run/docker.sock: connect: permission 
     usermod -a -G docker {yourusername}
 
 
-## Deployment in production
+## Deployment
 
-You probably want to have a cronjob that makes sure the server is started on reboot.
+There are some convenience scripts defined in `fabfile.py` to help with deployment. You need to have fabric installed for this to work. (`pip install fabric`)
 
-## Develop
+You can then do this to get a list of available commands:
+
+    fab -l
+
+To rebuild the docker images on the staging instance, you can do:
+
+    fab build:staging
+
+To update the docker images with the latest backfeed python packages from github on the production instance, do:
+
+    fab update:production
+
+
+## Developing
 
 If you want to update your image with the latest versions of the `protocol`,  you can use the following commands:
 
