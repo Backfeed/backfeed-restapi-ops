@@ -3,6 +3,9 @@
 
 # What is where
 
+production db:
+
+    psql -p 5433 -U backfeed -h magazine.backfeed.cc backfeed
 ## api.staging.backfeed.cc
 
     159.203.172.115

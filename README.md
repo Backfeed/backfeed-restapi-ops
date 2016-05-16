@@ -20,8 +20,6 @@ For `docker-compose`, https://github.com/docker/compose/releases
 
 As of writing, this was the quickest way:
 
-
-
     curl -L https://github.com/docker/compose/releases/download/1.7.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
 
@@ -31,46 +29,40 @@ Install Docker Toolbox from: https://www.docker.com/products/docker-toolbox
 
 ## Build
 
-Build the docker image
+The API lives in two docker images - `docker_api` and `docker_postgres`. 
 
-    docker build -t backfeed-api .
+The `.yml` files in the directory where this README file lives are examples of how these docker files can be used. Of particular interest in those files are the `volumes` entries, that define where the data is saved on the host machine. Another entry you might want to look at is the `ports` setting, that maps local ports to ports in the docker files.
+ 
+Building and running the default `docker-compose.yml` file is simply a matter of running:
 
-If you get an error like ```dial unix /var/run/docker.sock: connect: permission denied. Are you trying to connect to a TLS-enabled daemon without TLS?```, you may need to add your user to the ```docker``` group:
-
-    usermod -a -G docker {yourusername}
-
-Now you are ready to start the server using the docker image you just created.
-
-You need to tell the docker image (1) which port to listen on and (2) which data directory to use. 
-
-For example, if you want the service to be available on port 8880, and save the data in /home/backfeed/data, you would start the service like tis:
-
-    docker run -it -p 8888:8888 -v /home/backfeed/data:/data backfeed-api
+    docker-compose up
 
 You can now visit your Backfeed REST API at:
 
     http://0.0.0.0:8888/test/users
 
-If you are satisfied that everything works, you can stop the docker command (with ```ctrl-C``` and then start is in daemon mode:)
 
-    docker run -itd -p 8888:8888 -v /home/backfeed/data:/data backfeed-api
+## Troubleshooting
+
+If you get an error like ```dial unix /var/run/docker.sock: connect: permission denied. Are you trying to connect to a TLS-enabled daemon without TLS?```, you may need to add your user to the ```docker``` group:
+
+    usermod -a -G docker {yourusername}
 
 
 ## Deployment in production
 
 You probably want to have a cronjob that makes sure the server is started on reboot.
 
-
-
-
-If everything is working as it should, 
-
 ## Develop
 
-If you want to update your image with the latest versions from master, these work: 
+If you want to update your image with the latest versions of the `protocol`,  you can use the following commands:
 
-    docker run -it backfeed-api update
+    docker-compose exec backfeed-api update
+
+Restart the protocol service:
+
+    docker-compose exec backfeed-api sv hup backfeed
 
 You can also login to the docker instance:
 
-    docker run -it backfeed-api /bin/bash 
+    docker-compose exec backfeed-api /bin/bash 

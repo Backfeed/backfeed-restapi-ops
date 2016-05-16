@@ -28,6 +28,7 @@ services:
      - /home/backfeed/data:/data
     depends_on:
      - backfeed-postgres-ore
+     
   backfeed-postgres-ore:
     build: docker_postgres
     image: backfeed-postgres
