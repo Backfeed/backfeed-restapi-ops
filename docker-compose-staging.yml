@@ -38,7 +38,7 @@ services:
     build: docker_postgres
     image: backfeed-postgres
     volumes:
-     - /home/backfeed/data:/data
+     - /home/backfeed/data-ore:/data
     environment:
      - POSTGRES_USER=backfeed-ore
      - POSTGRES_DB=backfeed-ore
