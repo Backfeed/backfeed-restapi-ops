@@ -6,6 +6,7 @@
 production db:
 
     psql -p 5433 -U backfeed -h magazine.backfeed.cc backfeed
+
 ## api.staging.backfeed.cc
 
     159.203.172.115
@@ -36,6 +37,7 @@ data directory:
 nginx config:
 
     /etc/nginx/sites-available/api-ore.staging.backfeed.cc
+
 start with 
 
     docker run -dit -p 8889:8888 -v /home/backfeed/data-ore:/data backfeed-api

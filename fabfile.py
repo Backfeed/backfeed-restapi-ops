@@ -38,18 +38,16 @@ CONFIG = {
         'host_string': 'backfeed@192.241.178.73',
         'installation_dir': '/home/backfeed/ops',
         'docker_compose_file': 'docker-compose-production.yml',
-       
         'docker_containers': [
             {
-            'name': 'backfeed-api',
-            'port': '8888',
-            'data_dir': '/home/backfeed/data',
-            'url': 'http://api.staging.backfeed.cc',
+                'name': 'backfeed-api',
+                'port': '8888',
+                'data_dir': '/home/backfeed/data',
+                'url': 'http://api.staging.backfeed.cc',
             },
         ]
     }
 }
-
 
 
 @task
@@ -68,7 +66,9 @@ def build(where):
 def restart(where):
     config = get_config(where)
     with settings(host_string=config['host_string']), cd(config['installation_dir']):
-        cmd= 'docker-compose -f {docker_compose_file} restart '
+        cmd = 'docker-compose -f {docker_compose_file} restart'.format(**config)
+        run(cmd)
+
 
 @task
 def update(where):
@@ -122,3 +122,14 @@ def get_config(where):
         raise Exception('There is no configuration for "{where}"'.format(**locals()))
     config = Config(**CONFIG[where])
     return config
+
+@task
+def setup_database(where):
+    config = get_config(where)
+    with settings(host_string=config['host_string']), cd(config['installation_dir']):
+        container = {
+            'name': 'backfeed-postgres', 
+        }
+
+        run('docker-compose exec {name} su postgres -c "createuser backfeed -SDRP"'.format(**container))
+        run('docker-compose exec {name} su postgres -c "createdb backfeed --owner=backfeed"'.format(**container))
