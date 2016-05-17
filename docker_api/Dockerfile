@@ -7,7 +7,7 @@ RUN apt-get install -y python python-dev
 RUN apt-get install -y curl vim
 RUN apt-get install -y python-setuptools
 RUN apt-get install -y git
-RUN apt-get install -y build-essential libffi-dev libssl-dev --fix-missing
+RUN apt-get install -y build-essential libffi-dev libssl-dev
 RUN apt-get install -y runit
 RUN apt-get install -y libpq-dev
 RUN rm -rf /var/lib/apt/lists/*
