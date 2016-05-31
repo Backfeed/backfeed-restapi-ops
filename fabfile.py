@@ -21,16 +21,16 @@ CONFIG = {
         'docker_compose_file': 'docker-compose-staging.yml',
         'docker_containers': [
             {
-            'name': 'backfeed-api-ore',
-            'port': '8889',
-            'data_dir': '/home/backfeed/data-ore',
-            'url': 'http://api-ore.staging.backfeed.cc',
+                'name': 'backfeed-api-ore',
+                'port': '8889',
+                'data_dir': '/home/backfeed/data-ore',
+                'url': 'http://api-ore.staging.backfeed.cc',
             },
             {
-            'name': 'backfeed-api',
-            'port': '8888',
-            'data_dir': '/home/backfeed/data',
-            'url': 'http://api.staging.backfeed.cc',
+                'name': 'backfeed-api',
+                'port': '8888',
+                'data_dir': '/home/backfeed/data',
+                'url': 'http://api.staging.backfeed.cc',
             },
         ]
     },
